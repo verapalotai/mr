@@ -1,8 +1,10 @@
-#' Function to get the price of one BTC in USD'
+#' Function to get the price of one BTC in USD by hitting the Binance API'
 #'
 #' This function is using the \code{binance_coins_prices} function from the \code{binancer} package.
-#'
+#' This is a wrapper around the \code{binancer} package.
 #' @export
+#' @param retried the number of retries previously done before the exponential backoff sleep
+#' @importFrom  binancer binance_coins_prices
 
 get_bitcoin_price <- function(retried = 0) {
   tryCatch(
@@ -12,14 +14,4 @@ get_bitcoin_price <- function(retried = 0) {
       get_bitcoin_price(retried = retried + 1)
     }
   )
-}
-
-#' Function to add the appropriate suffix to a value in HUF
-#'
-#' @param x is the value in HUF we would like to add the Ft suffix to
-#'
-#' @export
-
-forint <- function(x){
-  dollar(x, prefix='', suffix=' Ft')
 }
