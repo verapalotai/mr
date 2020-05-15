@@ -5,6 +5,7 @@
 #' @export
 #' @param retried the number of retries previously done before the exponential backoff sleep
 #' @importFrom  binancer binance_coins_prices
+#' @import  data.table
 
 get_bitcoin_price <- function(retried = 0) {
   tryCatch(
